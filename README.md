@@ -62,7 +62,7 @@ auth            sufficient      pam_unix.so try_first_pass likeauth nullok
 auth            sufficient      pam_fprintd.so
 ```
 You can enable fingerprint login in swaylock, by adding the same code into `/etc/pam.d/swaylock`.\
-Or on your login screen (`/etc/pam.d/system-login`), SDDM (`/etc/pam.d/sddm`), etc.
+Or on your login screen ([ly](https://github.com/fairyglade/ly), etc.) (`/etc/pam.d/system-login`), SDDM (`/etc/pam.d/sddm`), ...
 # Troubleshooting
 <sup>From [python-validity](https://github.com/uunicorn/python-validity?tab=readme-ov-file#error-situations)</sup>
 
