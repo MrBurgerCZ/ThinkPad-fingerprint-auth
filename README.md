@@ -12,7 +12,7 @@ Made for the `ID 138a:0097 Validity Sensors, Inc.` scanner.
 
 ![Screenshot from 2024-10-11 20-17-17](https://github.com/user-attachments/assets/92f0cdc0-2518-4c6e-97fc-57abd691a350)
 
-# Setup
+# Setup on Arch
 #### Firstly, check if you have the right fingerprint sensor by running `lsusb`:
 ```
 ~ lsusb
