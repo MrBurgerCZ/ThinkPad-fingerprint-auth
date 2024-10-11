@@ -55,8 +55,16 @@ WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibern
 ```
 sudo systemctl enable --now restart_fprintd_after_sleep.service
 ```
+#### PAM:
+Now, to activate the reader after running sudo, add this *on top* of `/etc/pam.d/system-auth`:
+```
+auth            sufficient      pam_unix.so try_first_pass likeauth nullok
+auth            sufficient      pam_fprintd.so
+```
+You can enable fingerprint login in swaylock, by adding the same code into `/etc/pam.d/swaylock`.\
+Or on your login screen (`/etc/pam.d/system-login`), SDDM (`/etc/pam.d/sddm`), etc.
 # Troubleshooting
-<sup>Sourced from [python-validity](https://github.com/uunicorn/python-validity?tab=readme-ov-file#error-situations)</sup>
+<sup>From [python-validity](https://github.com/uunicorn/python-validity?tab=readme-ov-file#error-situations)</sup>
 
 ### [List devices failed](https://github.com/uunicorn/python-validity?tab=readme-ov-file#list-devices-failed)
 If `fprintd-enroll` returns with 
