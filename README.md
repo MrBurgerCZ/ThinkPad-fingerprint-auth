@@ -23,6 +23,7 @@ Bus 001 Device 007: ID 138a:0097 Validity Sensors, Inc.
 ```
 yay -S python-validity
 ```
+(You might need to [install](https://github.com/3v1n0/libfprint) `libfprint-vfs009x-git` if it doesn't work, idk yet)
 #### Scan your finger:
 ```
 fprintd-enroll
