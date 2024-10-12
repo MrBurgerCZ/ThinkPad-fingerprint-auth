@@ -2,7 +2,7 @@ This has been tested on 2016 ThinkPad X270.\
 Made for the `ID 138a:0097 Validity Sensors, Inc.` scanner.
 
 ## Demo
-*Video demo will be added soon™*
+https://www.youtube.com/watch?v=oYyE5cBVhgk
 
 #### Successful read:
 
