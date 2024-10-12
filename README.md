@@ -1,5 +1,6 @@
-This has been tested on 2016 ThinkPad X270.\
-Made for the `ID 138a:0097 Validity Sensors, Inc.` scanner.
+> [!IMPORTANT]
+> This has been tested on 2016 ThinkPad X270.\
+> Made for the `ID 138a:0097 Validity Sensors, Inc.` scanner.
 
 ## Demo
 https://www.youtube.com/watch?v=oYyE5cBVhgk
@@ -23,7 +24,8 @@ Bus 001 Device 007: ID 138a:0097 Validity Sensors, Inc.
 ```
 yay -S python-validity
 ```
-(You might need to [install](https://github.com/3v1n0/libfprint) `libfprint-vfs009x-git` in addition if it doesn't work alone, I am not sure yet)
+> [!NOTE]
+> You might need to [install](https://github.com/3v1n0/libfprint) `libfprint-vfs009x-git` in addition if it doesn't work alone, I am not sure yet
 #### Scan your finger:
 ```
 fprintd-enroll
