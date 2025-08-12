@@ -68,6 +68,57 @@ auth            sufficient      pam_fprintd.so
 You can enable fingerprint login in swaylock, by adding the same code into `/etc/pam.d/swaylock`.\
 Or on your login screen ([ly](https://github.com/fairyglade/ly), etc.) (`/etc/pam.d/system-login`), SDDM (`/etc/pam.d/sddm`), ...
 # Troubleshooting
+You can look at this ["issue"](https://github.com/MrBurgerCZ/ThinkPad-fingerprint-auth/issues/1#issue-3265855179), it should help you. Thanks [bc09880](https://github.com/bc09880)! :)
+
+Here is the most important part:
+> #### 1. Clear the Fingerprint Database
+> 
+> The first thing I tried was deleting all registered fingerprints, as this is a common step for resolving issues with corrupted records. This is necessary after successfully enabling the `python3-validity` service:
+> 
+> fprintd-delete $USER
+> 
+> **Expected result**: `Fingerprints deleted on DBus driver`
+> #### 2. Verify that No Fingerprints Were Registered
+> 
+> After clearing the database, I checked that no fingerprints remained registered by running:
+> 
+> fprintd-verify
+> 
+> **Expected result**: `No fingers enrolled for this device.`
+> #### 3. Try Registering the Fingerprints Again
+> 
+> After clearing the database and confirming it was empty, I resumed the fingerprint registration process. I first registered the left index finger (which worked without issues), then I tried registering the right index finger.
+> ##### Register Left Index Finger:
+> 
+> fprintd-enroll -f left-index-finger
+> 
+> **Expected result**: `enroll-completed` (successful registration)
+> ##### Register Right Index Finger (after clearing the database):
+> 
+> fprintd-enroll -f right-index-finger
+> 
+> **Expected result**: `enroll-completed` (successful registration after clearing the database)
+> ### Lessons Learned
+> #### What DIDN'T Work:
+> 
+>     * **Simply running `fprintd-enroll`** did not resolve the issue. The fingerprint registration wouldn’t complete, and the error kept occurring.
+> 
+>     * Trying to register **right-index-finger** multiple times without clearing the database.
+> 
+>     * Using the incorrect command `sudo fprintd-delete right-index-finger` (instead of clearing the entire database with `$USER`).
+> 
+>     * Restarting the services alone without clearing the database.
+> 
+> 
+> #### What DID Work:
+> 
+>     * **Completely clearing** the database with `fprintd-delete $USER`.
+> 
+>     * **Starting fresh** with all records deleted.
+> 
+>     * First registering the finger that worked (left index), and then the problematic one (right index).
+> 
+# Troubleshooting 2
 <sup>From [python-validity](https://github.com/uunicorn/python-validity?tab=readme-ov-file#error-situations)</sup>
 
 ### [List devices failed](https://github.com/uunicorn/python-validity?tab=readme-ov-file#list-devices-failed)
